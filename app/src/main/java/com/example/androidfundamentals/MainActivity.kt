@@ -29,6 +29,30 @@ class MainActivity : AppCompatActivity() {
         mMessageEditText = findViewById(R.id.editText_main)
         mReplyHeaderTextView = findViewById(R.id.text_header_reply)
         mReplyTextView = findViewById(R.id.text_message_reply)
+
+        savedInstanceState?.let {
+            val isVisible = savedInstanceState.getBoolean("reply_visible")
+
+            Log.d(logTag,"savedInstanceState enabled")
+            if (isVisible) {
+                mReplyTextView.visibility = View.VISIBLE
+                mReplyHeaderTextView.visibility = View.VISIBLE
+
+                val text = savedInstanceState.getString("reply_text")
+                mReplyTextView.text = text
+            }
+        }
+
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        Log.d(logTag, "onSaveInstanceState")
+        if (mReplyHeaderTextView.visibility == View.VISIBLE) {
+            outState.putBoolean("reply_visible", true)
+            outState.putString("reply_text", mReplyTextView.text.toString())
+        }
+
     }
 
     override fun onStart() {
