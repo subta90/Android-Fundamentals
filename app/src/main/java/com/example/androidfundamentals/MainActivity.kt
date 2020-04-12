@@ -10,11 +10,13 @@ import android.widget.EditText
 class MainActivity : AppCompatActivity() {
 
     private lateinit var mWebsiteEditText: EditText
+    private lateinit var mLocationEditText: EditText
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         mWebsiteEditText = findViewById(R.id.website_edittext)
+        mLocationEditText = findViewById(R.id.location_edittext)
     }
 
     fun openWebsite(view: View) {
@@ -25,10 +27,17 @@ class MainActivity : AppCompatActivity() {
         intent.resolveActivity(packageManager).let {
             startActivity(intent)
         }
-
     }
 
-    fun openLocation(view: View) {}
+    fun openLocation(view: View) {
+        val locationString = mLocationEditText.text.toString()
+        val addressUri = Uri.parse("geo:0, 0?q=" + locationString)
+
+        val intent = Intent(Intent.ACTION_VIEW, addressUri)
+        intent.resolveActivity(packageManager).let {
+            startActivity(intent)
+        }
+    }
 
     fun shareText(view: View) {}
 }
