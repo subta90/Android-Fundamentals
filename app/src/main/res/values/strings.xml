@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Android Fundamentals</string>
+    <string name="edittext_url">http://developer.android.com</string>
+    <string name="button_uri">Open Website</string>
+    <string name="edittext_loc">Golden Gate Bridge</string>
+    <string name="button_loc">Open Location</string>
+    <string name="edittext_share">\'Twas Brillig and the slithy toves'</string>
+    <string name="button_share">Share This Text</string>
 </resources>
