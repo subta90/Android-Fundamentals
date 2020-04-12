@@ -23,10 +23,42 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Log.d(logTag, "-------")
+        Log.d(logTag, "onCreate")
         setContentView(R.layout.activity_main)
         mMessageEditText = findViewById(R.id.editText_main)
         mReplyHeaderTextView = findViewById(R.id.text_header_reply)
         mReplyTextView = findViewById(R.id.text_message_reply)
+    }
+
+    override fun onStart() {
+        super.onStart()
+        Log.d(logTag, "onStart")
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.d(logTag, "onResume")
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Log.d(logTag, "onPause")
+    }
+
+    override fun onRestart() {
+        super.onRestart()
+        Log.d(logTag, "onRestart")
+    }
+
+    override fun onStop() {3
+        super.onStop()
+        Log.d(logTag, "onStop")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.d(logTag, "onDestroy")
     }
 
     fun launchSecondActivity(view: View) {
