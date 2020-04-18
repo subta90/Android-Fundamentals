@@ -8,6 +8,12 @@ import android.widget.Toast
 
 class MainActivity : AppCompatActivity() {
 
+    companion object {
+        val extraMessage = "com.example.android.androidfundamentals.extra.message"
+    }
+
+    var mOrderMessage: String = "No Order."
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -15,6 +21,7 @@ class MainActivity : AppCompatActivity() {
         val fab: View = findViewById(R.id.fab)
         fab.setOnClickListener {
             val intent = Intent(this, OrderActivity::class.java)
+            intent.putExtra(extraMessage, mOrderMessage)
             startActivity(intent)
         }
     }
@@ -28,21 +35,24 @@ class MainActivity : AppCompatActivity() {
      * Shows a message that the donut image was clicked.
      */
     fun showDonutOrder(view: View) {
-        displayToast(getString(R.string.dount_order_message))
+        mOrderMessage = getString(R.string.donut_order_message)
+        displayToast(mOrderMessage)
     }
 
     /**
      * Shows a message that the ice cream sandwich image was clicked.
      */
     fun showIceCreamOrder(view: View) {
-        displayToast(getString(R.string.ice_cream_order_message))
+        mOrderMessage = getString(R.string.ice_cream_order_message)
+        displayToast(mOrderMessage)
     }
 
     /**
      * Shows a message that the froyo image was clicked.
      */
     fun showFroyoOrder(view: View) {
-        displayToast(getString(R.string.froyo_order_message))
+        mOrderMessage = getString(R.string.froyo_order_message)
+        displayToast(mOrderMessage)
     }
 
 }
