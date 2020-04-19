@@ -1,8 +1,14 @@
 package com.example.androidfundamentals
 
+import android.content.Intent
+import android.net.Uri
+import android.nfc.Tag
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.view.KeyEvent
 import android.view.View
+import android.view.inputmethod.EditorInfo
 import android.widget.*
 
 class OrderActivity : AppCompatActivity() {
@@ -35,6 +41,17 @@ class OrderActivity : AppCompatActivity() {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinner.adapter = adapter
 
+        val phoneText = findViewById<EditText>(R.id.phone_text)
+        phoneText.setOnEditorActionListener { textView, i, keyEvent ->
+            var handled = false
+            if (i == EditorInfo.IME_ACTION_SEND) {
+                dialNumber()
+                handled = true
+            }
+            handled
+        }
+
+
     }
 
     fun onRadioButtonClicked(view: View) {
@@ -62,6 +79,18 @@ class OrderActivity : AppCompatActivity() {
 
     fun displayToast(message: String) {
         Toast.makeText(applicationContext, message, Toast.LENGTH_SHORT).show()
+    }
+
+    private fun dialNumber() {
+        val editText = findViewById<TextView>(R.id.phone_text)
+        val phoneNum = "tel:" + editText.text.toString()
+        Log.d("dialNumber", "dialNumber: $phoneNum")
+
+        val intent = Intent(Intent.ACTION_DIAL)
+        intent.data = Uri.parse(phoneNum)
+
+        startActivity(intent)
+
     }
 
 }
