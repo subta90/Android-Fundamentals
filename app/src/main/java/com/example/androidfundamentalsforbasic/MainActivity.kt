@@ -5,6 +5,8 @@ import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
@@ -12,6 +14,9 @@ import java.util.*
 class MainActivity : AppCompatActivity() {
 
     private val mWordList: LinkedList<String> = LinkedList()
+
+    private lateinit var mRecyclerView: RecyclerView
+    private lateinit var mAdapter: WordListAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,6 +31,12 @@ class MainActivity : AppCompatActivity() {
         for (i in 0..19) {
             mWordList.addLast("Word: $i")
         }
+
+        mRecyclerView = findViewById(R.id.recyclerview)
+        mAdapter = WordListAdapter(this, mWordList)
+
+        mRecyclerView.adapter = mAdapter
+        mRecyclerView.layoutManager = LinearLayoutManager(this)
 
     }
 
