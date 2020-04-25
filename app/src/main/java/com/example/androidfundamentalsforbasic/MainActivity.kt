@@ -54,7 +54,22 @@ class MainActivity : AppCompatActivity() {
         // as you specify a parent activity in AndroidManifest.xml.
         return when (item.itemId) {
             R.id.action_settings -> true
+            R.id.action_reset -> {
+                deleteAddedWords()
+                true
+            }
             else -> super.onOptionsItemSelected(item)
         }
     }
+
+    private fun deleteAddedWords() {
+
+        mWordList.size > 20
+
+        for (i in 20 until mWordList.size) {
+            mWordList.removeLast()
+            mRecyclerView.adapter?.notifyItemRemoved(mWordList.size)
+        }
+    }
+
 }
