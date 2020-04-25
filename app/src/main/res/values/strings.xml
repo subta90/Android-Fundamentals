@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Android Fundamentals</string>
+    <string name="team1">Team 1</string>
+    <string name="score1">0</string>
+    <string name="team2">Team 2</string>
+    <string name="score2">0</string>
+    <string name="minus_button_description">Minus Button</string>
+    <string name="plus_button_description">Plus Button</string>
 </resources>
