@@ -24,8 +24,10 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
 
         fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
+            val wordListSize = mWordList.size
+            mWordList.addLast("+ Word $wordListSize")
+            mRecyclerView.adapter?.notifyItemInserted(wordListSize)
+            mRecyclerView.smoothScrollToPosition(wordListSize)
         }
 
         for (i in 0..19) {
