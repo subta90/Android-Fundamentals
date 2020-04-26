@@ -7,17 +7,13 @@ import kotlin.random.Random
 
 class SimpleAsyncTask(textView: TextView) : AsyncTask<Void, Void, String>() {
 
-    private lateinit var mTextView: WeakReference<TextView>
-
-    init {
-        mTextView = WeakReference(textView)
-    }
+    private val mTextView: WeakReference<TextView> = WeakReference(textView)
 
     override fun doInBackground(vararg p0: Void?): String {
         val random = Random(1)
         val n = random.nextInt(11)
 
-        val s: Long = (n * 200).toLong()
+        val s: Long = (n * 1000).toLong()
 
         try {
             Thread.sleep(s)
@@ -32,5 +28,9 @@ class SimpleAsyncTask(textView: TextView) : AsyncTask<Void, Void, String>() {
 
     override fun onPostExecute(result: String?) {
         mTextView.get()?.text = result
+    }
+
+    override fun onProgressUpdate(vararg values: Void?) {
+        super.onProgressUpdate(*values)
     }
 }
