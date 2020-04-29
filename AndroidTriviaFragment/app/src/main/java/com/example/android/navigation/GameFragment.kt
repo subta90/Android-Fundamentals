@@ -107,6 +107,7 @@ class GameFragment : Fragment() {
                 }
             }
         }
+
         return binding.root
     }
 
