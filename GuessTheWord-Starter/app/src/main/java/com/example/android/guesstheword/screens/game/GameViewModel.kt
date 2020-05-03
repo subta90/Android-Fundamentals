@@ -37,6 +37,12 @@ class GameViewModel : ViewModel() {
         DateUtils.formatElapsedTime(time)
     }
 
+    val wordHint = Transformations.map(word) { word ->
+        val randomPosition = (1..word.length).random()
+        "Current word has " + word.length + " letters" +
+                "\nThe letter at position " + randomPosition + " is " + word[randomPosition - 1].toUpperCase()
+    }
+
     private val timer: CountDownTimer
 
     private lateinit var wordList: MutableList<String>
